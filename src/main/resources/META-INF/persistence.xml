@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+   <persistence-unit name="pu" transaction-type="JTA">
+      <provider>org.hibernate.ejb.HibernatePersistence</provider>
+      <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+      
+      <!-- <class>io.ingenia.gambling.web.entity.User</class> -->
+      
+      <exclude-unlisted-classes>false</exclude-unlisted-classes> <!-- add <class> tags if exclude-unlisted-clases is true -->
+      <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode><!-- needed when adding second level cache -->
+      
+      <properties>
+      	<!-- validate | update | create | create-drop | none -->
+         <property name="hibernate.hbm2ddl.auto" value="create-drop"/><!--  update none create -->
+
+         <!-- batch thing... -->
+         <property name="hibernate.jdbc.batch_size" value="500"/>
+         <property name="hibernate.order_inserts" value="true" />
+         <property name="hibernate.order_updates" value="true" />
+         
+         <property name="hibernate.cache.use_second_level_cache" value="true"/>
+         <!--<property name="hibernate.show_sql" value ="true" />-->
+
+
+      </properties>
+   </persistence-unit>
+</persistence>
